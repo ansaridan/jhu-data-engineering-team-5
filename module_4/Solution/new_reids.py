@@ -59,6 +59,7 @@ crsr.execute('''CREATE TABLE payments(
 
 
 names_list = []
+count = 1
 for order in data['orders']:
     payments = order['payment']
     # names_dict[name] = 1
@@ -81,16 +82,15 @@ for order in data['orders']:
     # # print(order['charges'])
     if len(payments) > 1:
         name = payments['cardholder']
-        crsr.execute('''INSERT INTO charges (date, subtotal, total, taxes)
-                        VALUES (?,?,?,?)''',
-                        (order['charges']['date'], order['charges']['subtotal'],
-                        order['charges']['total'], order['charges']['taxes']))
-        crsr.execute('''INSERT INTO charges (payment_id) SELECT id FROM payments
-                    WHERE cardholder = (?)''',
-                    (name,))
-
+        # crsr.execute('''INSERT INTO charges (date, subtotal, total, taxes)
+        #                 VALUES (?,?,?,?)''',
+        #                 (order['charges']['date'], order['charges']['subtotal'],
+        #                 order['charges']['total'], order['charges']['taxes']))
+        # crsr.execute('''INSERT INTO charges (payment_id) VALUES (?)''',
+        #              ('SELECT'))
+    
     # SEEMS TO WORK< START HERE
-
+    count += 1
 # def extract_properties(properties, data, defaults=dict()):
 #     result = []
 #     for prop in properties:

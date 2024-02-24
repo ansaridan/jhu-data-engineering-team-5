@@ -1,0 +1,11 @@
+{
+    "sqltools.useNodeRuntime": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "ContractorsConnection",
+            "database": "${workspaceFolder:Data_Science_Sp24}/Problem_Set_2/contracts.db"
+        }
+    ]
+}

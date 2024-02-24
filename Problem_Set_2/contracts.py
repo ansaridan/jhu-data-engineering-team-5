@@ -4,8 +4,8 @@ import os
 import sqlite3
 
 
-# book = xlrd.open_workbook('Top_100_Contractors_Report_Fiscal_Year_2015.xls')
-book = xlrd.open_workbook('C:/Users/Jhirs/desktop/data_science_sp24/problem_set_2/Top_100_Contractors_Report_Fiscal_Year_2015.xls')
+book = xlrd.open_workbook('./Top_100_Contractors_Report_Fiscal_Year_2015.xls')
+# book = xlrd.open_workbook('C:/Users/Jhirs/desktop/data_science_sp24/problem_set_2/Top_100_Contractors_Report_Fiscal_Year_2015.xls')
 # print(book.sheet_names())
 federal = book.sheet_by_index(0)
 # print('{0} {1} {2}'.format(sh.name, sh.nrows, sh.ncols))
@@ -19,7 +19,8 @@ global_vendor_names.pop(0)
 
 
 
-connection = sqlite3.connect('C:/Users/Jhirs/desktop/data_science_sp24/problem_set_2/contracts.db')
+connection = sqlite3.connect('./contracts.db')
+# connection = sqlite3.connect('C:/Users/Jhirs/desktop/data_science_sp24/problem_set_2/contracts.db')
 
 
 # cursor
