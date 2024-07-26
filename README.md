@@ -45,3 +45,34 @@ docker-compose up
 
 ## Deliverables & Deadlines
 
+The project requirements are:
+- Create at least five separate tables based on the data schema.
+- Create an entity-relationship diagram (ERD) of your schema in PDF format, including any
+keys or relationships. You can use any tool to create the ERD, such as Draw.io or Lucidchart.
+- Create an automation and an API to export or consume an aggregated view or interesting report of the data. 
+- Jupyter Notebook(s) or Python script(s) containing the data transformation
+code.
+- Have SQL script containing the table creation and data loading commands.
+- Have automation code and a web API implementation in Python
+- Include required Docker files
+- Include documentation file in PDF format (that can just be a save of this markdown file)
+
+**Wednesday, July 31st**
+- All to have python functions committed to the repo to handle their respective
+  - **DAN**: function to parse Citibike API data into table
+  - **HANNAH**: function to download and parse monthly citibike ride data
+    - See example [here](https://github.com/dfansari/235labs-flask/blob/master/labsAppFramework/citibike/etl.ipynb) if you want an idea of how to do that programmatically in python (notebook cell 24)
+  - **ISABEL**: function to download and parse weather data
+  - **JEREMY**: function to download and parse Census and IRS data
+
+Note that if it is not possible to have the task run end-to-end in python, we'll need to commit the data to this repo and add a COPY function into the docker container creation -- so it's preferable if we can handle that in python.
+
+**DAN**: Create ERD in online platform that we can all contribute to
+**ALL**: Settle on report design and implementation
+
+**Monday, August 4th**
+- **ALL** Add respective tables to ERD
+- **SOMEONE CLAIM** Set up 'interesting report'
+
+**Tuesday, August 6th**
+- **DAN** turn this in
