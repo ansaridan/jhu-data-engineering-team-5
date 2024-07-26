@@ -26,7 +26,12 @@ git clone https://github.com/ansaridan/jhu-data-engineering-team-5.git
 ```
 
 3. In a terminal, navigate into the cloned repo directory
-4.  Create the Docker image from the repo's specifications
+
+```
+cd jhu-data-engineering-team-5
+```
+
+5.  Create the Docker image from the repo's specifications
 
 ```
 docker-compose up
