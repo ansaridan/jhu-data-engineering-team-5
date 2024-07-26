@@ -22,7 +22,7 @@ sudo systemctl start docker
 2. Clone this repo to a directory on your machine
 
 ```
-git clone <REPO NAME>
+git clone https://github.com/ansaridan/jhu-data-engineering-team-5.git
 ```
 
 3. In a terminal, navigate into the cloned repo directory
