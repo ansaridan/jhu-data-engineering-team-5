@@ -1,0 +1,44 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: awesome_user
+      POSTGRES_PASSWORD: awesome_password
+      POSTGRES_DB: new_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./folder:/home/awesome
+
+  airflow-jupyter:
+    build: .
+    ports:
+      - "8888:8888"
+      - "8080:8080"
+    volumes:
+      - ./folder:/home/awesome
+    depends_on:
+      - postgres
+      - mongodb
+    environment:
+      - AIRFLOW_HOME=/home/awesome/airflow
+      - AIRFLOW__CORE__DAGS_FOLDER=/home/awesome/airflow/dags
+    command: >
+      bash -c "
+      mkdir -p /home/awesome/airflow/dags &&
+      airflow db init &&
+      airflow users create -r Admin -u admin -p admin -e admin@example.com -f Admin -l User &&
+      service cron start &&
+      jupyter lab --ip=0.0.0.0 --no-browser --allow-root &&
+      chmod 0600 /home/awesome/.local/share/jupyter/runtime/jupyter_cookie_secret"
+
+  mongodb:
+    image: mongo:7.0.10-rc0-jammy
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:
