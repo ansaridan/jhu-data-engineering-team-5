@@ -40,8 +40,11 @@ docker-compose up
 
 **In Mac/PC:** find the image in Docker Desktop and hit start
 
-## Running Airflow
+## Running Jupyter for Development
+- Follow the link in the running image and put in the provided token
 
+## Running Airflow
+- Follow the link in the running image and use the username/password in the Docker file
 
 ## Deliverables & Deadlines
 
