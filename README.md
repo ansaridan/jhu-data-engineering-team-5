@@ -63,9 +63,9 @@ code.
 **Wednesday, July 31st**
 - All to have python functions committed to the repo to handle their respective
   - **DAN**: function to parse Citibike API data into table
-  - **HANNAH**: function to download and parse monthly citibike ride data
+  - **ISABEL**: function to download and parse monthly citibike ride data
     - See example [here](https://github.com/dfansari/235labs-flask/blob/master/labsAppFramework/citibike/etl.ipynb) if you want an idea of how to do that programmatically in python (notebook cell 24)
-  - **ISABEL**: function to download and parse weather data
+  - **HANNAH**: function to download and parse weather data
   - **JEREMY**: function to download and parse Census and IRS data
 
 Note that if it is not possible to have the task run end-to-end in python, we'll need to commit the data to this repo and add a COPY function into the docker container creation -- so it's preferable if we can handle that in python.
