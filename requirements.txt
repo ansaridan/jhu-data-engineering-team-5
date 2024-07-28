@@ -1,7 +1,0 @@
-pandas
-us
-cryptography
-pymongo
-duckdb
-polars
-psycopg2-binary
