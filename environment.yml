@@ -1,0 +1,20 @@
+name: en685648
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - scipy
+  - matplotlib
+  - tabulate
+  - pandas
+  - xlrd
+  - seaborn
+  - scikit-learn
+  - statsmodels
+  - beautifulsoup4
+  - jupyter
+  - jupyterlab
+  - ipython
+  - ipykernel
+  - python-duckdb=0.9.2
