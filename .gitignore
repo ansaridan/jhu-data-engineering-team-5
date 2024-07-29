@@ -1,0 +1,9 @@
+# Ignore all hidden files and directories
+.*
+
+# But, don't ignore .gitignore and .env files
+!.gitignore
+!.env
+
+# Don't ignore .git directory and its contents
+!.git/

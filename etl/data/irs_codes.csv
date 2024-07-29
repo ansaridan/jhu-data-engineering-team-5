@@ -1,0 +1,168 @@
+,Code,Description
+0,STATEFIPS,State Federal Information Processing System
+1,STATE,State associated with zip code
+2,ZIPCODE,5-digit zip code
+3,AGI_STUB,Size of adjusted gross income
+4,N1,Number of returns
+5,MARS1,Number of single returns
+6,MARS2,Number of joint returns
+7,MARS4,Number of head of household returns
+8,ELF,Number of electronically filed returns
+9,CPREP,Number of computer prepared paper returns
+10,PREP,Number of returns with paid preparer's signature
+11,DIR_DEP,Number of returns with direct deposit
+12,VRTCRIND,Number of returns with virtual currency indicator
+13,N2,Number of individuals
+14,TOTAL_VITD,Total number of volunteer prepared returns
+15,VITA,Number of volunteer income tax assistance prepared returns
+16,TCE,Number of tax counseling for the elderly prepared returns
+17,VITA_EIC,Number of volunteer prepared returns with Earned Income Credit
+18,RAC,Number of refund anticipation check returns
+19,ELDERLY,Number of elderly returns
+20,A00100,Adjust gross income (AGI)
+21,N02650,Number of returns with total income
+22,A02650,Total income amount
+23,N00200,Number of returns with salaries and wages
+24,A00200,Salaries and wages amount
+25,N00300,Number of returns with taxable interest
+26,A00300,Taxable interest amount
+27,N00600,Number of returns with ordinary dividends
+28,A00600,Ordinary dividends amount
+29,N00650,Number of returns with qualified dividends
+30,A00650,Qualified dividends amount
+31,N00700,Number of returns with state and local income tax refunds
+32,A00700,State and local income tax refunds amount
+33,N00900,Number of returns with business or professional net income (less loss)
+34,A00900,Business or professional net income (less loss) amount
+35,N01000,Number of returns with net capital gain (less loss)
+36,A01000,Net capital gain (less loss) amount
+37,N01400,Number of returns with taxable individual retirement arrangements distributions
+38,A01400,Taxable individual retirement arrangements distributions amount
+39,N01700,Number of returns with taxable pensions and annuities
+40,A01700,Taxable pensions and annuities amount
+41,SCHF,Number of farm returns
+42,N02300,Number of returns with unemployment compensation
+43,A02300,Unemployment compensation amount
+44,N02500,Number of returns with taxable Social Security benefits
+45,A02500,Taxable Social Security benefits amount
+46,N26270,Number of returns with partnership/S-corp net income (less loss)
+47,A26270,Partnership/S-corp ne income (less loss) amount
+48,N02900,Number of returns with total statutory adjustments
+49,A02900,Total statutory adjustments amount
+50,N03220,Number of returns with educator expenses
+51,A03220,Educator expenses amount
+52,N03330,Number of returns with Self-employed (Keogh) retirement plans
+53,A03300,Self-employed (Keogh) retirement plans amount
+54,N03270,Number of returns with Self-employed health insurance deduction amount
+55,A03270,Self-employed health insurance deduction amount
+56,N03150,Number of returns with individual retirement arrangement payments
+57,A03150,Individual retirement arrangement payments amount
+58,N03210,Number of returns with student loan interest deduction
+59,A03210,Student loan interest deduction amount
+60,N02910,Number of returns with charitable contributions if took standard deduction
+61,A02910,Charitable contributions if took standard deduction
+62,N04450,Number of returns with total standard deduction
+63,A04450,Total standard deduction amount
+64,N04100,Number of returns with basic standard deduction
+65,A04100,Basic standard deduction amount
+66,N04200,Number of returns with additional standard deduction
+67,A04200,Additional standard deduction amount
+68,N04470,Number of returns with itemized deductions
+69,A04470,Total itemized deductions amount
+70,A00101,Amount of AGI for itemized returns
+71,N17000,Number of returns with total medical and dental expense deduction
+72,A17000,Total medical and dental expense deduction amount
+73,N18425,Number of returns with state and local income taxes
+74,A18425,State and local income taxes amount
+75,N18450,Number of returns with state and local general sales tax
+76,A18450,State and local general sales tax amount
+77,N18500,Number of returns with real estate taxes
+78,A18500,Real estate taxes amount
+79,N18800,Number of returns with personal property taxes
+80,A18800,Personal property taxes amount
+81,N18460,Number of returns with limited state and local taxes
+82,A18460,Limited and tate local taxes
+83,N18300,Number of returns with total taxes paid
+84,A18300,Total taxes paid amount
+85,N19300,Number of returns with home mortgage interest paid
+86,A19300,Home mortgage interest paid amount
+87,N19500,Number of returns with home mortgage from personal seller
+88,A19500,Home mortgage from personal seller amount
+89,N19530,Number of returns with deductible points
+90,A19530,Deductible points amount
+91,N19550,Number of returns with qualified mortgage insurance premiums
+92,A19550,Qualified mortgage insurance premiums amount
+93,N19570,Number of returns with investment interest paid
+94,A19570,Investment interest paid amount
+95,N19700,Number of returns with total charitable contributions
+96,A19700,Total charitable contributions amount
+97,N20950,Number of returns with other non-limited miscellanous deductions
+98,A20950,Other non-limited miscellaneous deductions amount
+99,N04475,Number of returns with qualified business income deduction
+100,A04475,Qualified business income deduction
+101,N04800,Number of returns with taxable income
+102,A04800,Taxable income amount
+103,N05800,Number of returns with income tax before credits
+104,A05800,Income tax before credits amount
+105,N09600,Number of returns with alternative minimum tax
+106,A09600,Alternative minimum tax amount
+107,N05780,Number of returns with excess advance premium tax credit repayment
+108,A05780,Excess advance premium tax credit repayment amount
+109,N07100,Number of returns with total tax credits
+110,A07100,Total tax credits amount
+111,N07300,Number of returns with foreign tax credit
+112,A07300,Foreign tax credit amount
+113,N07180,Number of returns with child and dependent care credit
+114,A07180,Child and dependent care credit amount
+115,N07230,Number of returns with nonrefundable education credit
+116,A07230,Nonrefundable education credit amount
+117,N07240,Number of returns with retirement savings contribution credit
+118,A07240,Retirement savings contribution credit amount
+119,N07225,Number of returns with nonrefundable child and other dependent credit
+120,A07225,Nonrefundable child and other dependent credit amount
+121,N07260,Number of returns with residental energy tax credit
+122,A07260,Residential energy tax credit amount
+123,N09400,Number of returns with self-employment tax
+124,A09400,Self-employment tax amount
+125,N85770,Number of returns with total premium tax credit
+126,A85770,Total premium tax credit amount
+127,N85775,Number of returns with advance premium tax credit
+128,A85775,Advance premium tax credit amount
+129,N10600,Number of returns with total tax payments
+130,A10600,Total tax payments amount
+131,N59660,Number of returns with earned income credit
+132,A59660,Earned income credit amount
+133,N59720,Number of returns with excess earned income credit
+134,A59720,Excess earned income credit (refundable) amount
+135,N11070,Number of returns with refundable child tax credit or additional child tax credit
+136,A11070,Refundable child tax credit or additional child tax credit amount
+137,N10960,Number of returns with refundable education credit
+138,A10960,Refundable education credit amount
+139,N11560,Number of returns with net premium tax credit
+140,A11560,Net premium tax credit amount
+141,N11450,"Number of returns with qualified sick and family leave credit for leave taken before April 1, 2021"
+142,A11450,"Qualified sick and family leave credit for leave taken before April 1, 2021"
+143,N11520,Number of returns with refundable child and dependent care credit
+144,A11520,Refundable child and dependent care credit
+145,N11530,"Number of returns with qualified sicka dn family leave credit for leave taken afte March 31, 2021"
+146,A11530,"Qualified sick and family leave credit for leave taken after March 31, 2021"
+147,N10970,Number of returns with recivery rebate credit
+148,A10970,Recovery rebate credit amount
+149,N10971,Number of returns with economic impact payment third round
+150,A10971,Economic impact payment third round amount
+151,N06500,Number of returns with income tax after credits
+152,A06500,Income tax after credits amount
+153,N10300,Number of returns with tax liability
+154,A10300,Total tax liability amount
+155,N85530,Number of returns with additional Medicare tax
+156,A85530,Additional Medicare tax amount
+157,N85300,Number of returns with net investment income tax
+158,A85300,Net investment income tax amount
+159,N11901,Number of returns with tax due at time of filing
+160,A11901,Tax due at time of filing amount
+161,N11900,Number of returns with total overpayments
+162,A11900,Total overpayments amount
+163,N11902,Number of returns with overpayments refunded
+164,A11902,Overpayments refunded amount
+165,N12000,Number of returns with credit to next year's estimated tax
+166,A12000,Credited to next year's estimated tax amount

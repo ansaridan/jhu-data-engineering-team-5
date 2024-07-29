@@ -1,0 +1,261 @@
+tables:
+  - name: irs_codes
+    columns:
+      - name: Code
+        type: VARCHAR(50)
+        description: Code representing the data field
+      - name: Description
+        type: TEXT
+        description: Description of the data field
+
+  - name: irs_data
+    columns:
+      - name: id
+        type: SERIAL PRIMARY KEY
+      - name: STATEFIPS
+        type: VARCHAR(50)
+      - name: STATE
+        type: TEXT
+      - name: zipcode
+        type: TEXT
+      - name: agi_stub
+        type: NUMERIC
+      - name: N1
+        type: NUMERIC
+      - name: mars1
+        type: NUMERIC
+      - name: MARS2
+        type: NUMERIC
+      - name: MARS4
+        type: NUMERIC
+      - name: ELF
+        type: NUMERIC
+      - name: CPREP
+        type: NUMERIC
+      - name: PREP
+        type: NUMERIC
+      - name: DIR_DEP
+        type: NUMERIC
+      - name: VRTCRIND
+        type: NUMERIC
+      - name: N2
+        type: NUMERIC
+      - name: TOTAL_VITA
+        type: NUMERIC
+      - name: VITA
+        type: NUMERIC
+      - name: TCE
+        type: NUMERIC
+      - name: VITA_EIC
+        type: NUMERIC
+      - name: RAC
+        type: NUMERIC
+      - name: ELDERLY
+        type: NUMERIC
+      - name: A00100
+        type: NUMERIC
+      - name: N02650
+        type: NUMERIC
+      - name: A02650
+        type: NUMERIC
+      - name: N00200
+        type: NUMERIC
+      - name: A00200
+        type: NUMERIC
+      - name: N00300
+        type: NUMERIC
+      - name: A00300
+        type: NUMERIC
+      - name: N00600
+        type: NUMERIC
+      - name: A00600
+        type: NUMERIC
+      - name: N00650
+        type: NUMERIC
+      - name: A00650
+        type: NUMERIC
+      - name: N00700
+        type: NUMERIC
+      - name: A00700
+        type: NUMERIC
+      - name: N00900
+        type: NUMERIC
+      - name: A00900
+        type: NUMERIC
+      - name: N01000
+        type: NUMERIC
+      - name: A01000
+        type: NUMERIC
+      - name: N01400
+        type: NUMERIC
+      - name: A01400
+        type: NUMERIC
+      - name: N01700
+        type: NUMERIC
+      - name: A01700
+        type: NUMERIC
+      - name: SCHF
+        type: NUMERIC
+      - name: N02300
+        type: NUMERIC
+      - name: A02300
+        type: NUMERIC
+      - name: N02500
+        type: NUMERIC
+      - name: A02500
+        type: NUMERIC
+      - name: N26270
+        type: NUMERIC
+      - name: A26270
+        type: NUMERIC
+      - name: N02900
+        type: NUMERIC
+      - name: A02900
+        type: NUMERIC
+      - name: N03220
+        type: NUMERIC
+      - name: A03220
+        type: NUMERIC
+      - name: N03300
+        type: NUMERIC
+      - name: A03300
+        type: NUMERIC
+      - name: N03270
+        type: NUMERIC
+      - name: A03270
+        type: NUMERIC
+      - name: N03150
+        type: NUMERIC
+      - name: A03150
+        type: NUMERIC
+      - name: N03210
+        type: NUMERIC
+      - name: A03210
+        type: NUMERIC
+      - name: N02910
+        type: NUMERIC
+      - name: A02910
+        type: NUMERIC
+      - name: N04450
+        type: NUMERIC
+      - name: A04450
+        type: NUMERIC
+      - name: N04100
+        type: NUMERIC
+      - name: A04100
+        type: NUMERIC
+      - name: N04200
+        type: NUMERIC
+      - name: A04200
+        type: NUMERIC
+      - name: N04470
+        type: NUMERIC
+      - name: A04470
+        type: NUMERIC
+      - name: A00101
+        type: NUMERIC
+      - name: N17000
+        type: NUMERIC
+      - name: A17000
+        type: NUMERIC
+      - name: N18425
+        type: NUMERIC
+      - name: A18425
+        type: NUMERIC
+      - name: N18450
+        type: NUMERIC
+      - name: A18450
+        type: NUMERIC
+      - name: N18500
+        type: NUMERIC
+      - name: A18500
+        type: NUMERIC
+      - name: N18800
+        type: NUMERIC
+      - name: A18800
+        type: NUMERIC
+      - name: N18460
+        type: NUMERIC
+      - name: A18460
+        type: NUMERIC
+      - name: N18300
+        type: NUMERIC
+      - name: A18300
+        type: NUMERIC
+      - name: N19300
+        type: NUMERIC
+      - name: A19300
+        type: NUMERIC
+      - name: N19500
+        type: NUMERIC
+      - name: A19500
+        type: NUMERIC
+      - name: N19530
+        type: NUMERIC
+      - name: A19530
+        type: NUMERIC
+      - name: N19550
+        type: NUMERIC
+      - name: A19550
+        type: NUMERIC
+      - name: N19570
+        type: NUMERIC
+      - name: A19570
+        type: NUMERIC
+      - name: N19700
+        type: NUMERIC
+      - name: A19700
+        type: NUMERIC
+      - name: N20950
+        type: NUMERIC
+      - name: A20950
+        type: NUMERIC
+      - name: N04475
+        type: NUMERIC
+      - name: A04475
+        type: NUMERIC
+      - name: N04800
+        type: NUMERIC
+      - name: A04800
+        type: NUMERIC
+      - name: N05800
+        type: NUMERIC
+      - name: A05800
+        type: NUMERIC
+      - name: N09600
+        type: NUMERIC
+      - name: A09600
+        type: NUMERIC
+      - name: N05780
+        type: NUMERIC
+      - name: A05780
+        type: NUMERIC
+      - name: N07100
+        type: NUMERIC
+      - name: A07100
+        type: NUMERIC
+      - name: N07300
+        type: NUMERIC
+      - name: A07300
+        type: NUMERIC
+      - name: N07180
+        type: NUMERIC
+      - name: A07180
+        type: NUMERIC
+      - name: N07230
+        type: NUMERIC
+      - name: A07230
+        type: NUMERIC
+      - name: N07240
+        type: NUMERIC
+      - name: A07240
+        type: NUMERIC
+      - name: N07225
+        type: NUMERIC
+      - name: A07225
+        type: NUMERIC
+      - name: N07260
+        type: NUMERIC
+      - name: A07260
+        type: NUMERIC
+   

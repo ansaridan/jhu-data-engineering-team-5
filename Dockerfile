@@ -46,7 +46,10 @@ RUN chmod 0644 /etc/cron.d/cronjob
 WORKDIR /home/awesome
 
 # Copy the requirements.txt file into the container at /home/jhu
-COPY requirements.txt .
+COPY . .
+
+# Change ownership of the copied files to 'awesome_user'
+RUN chown -R awesome_user:awesome_user /home/awesome
 
 # Install Python packages from requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
