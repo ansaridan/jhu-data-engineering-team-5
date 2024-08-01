@@ -5,3 +5,10 @@ pymongo
 duckdb
 polars
 psycopg2-binary
+matplotlib
+basemap
+cartopy
+plotly
+jupyterlab-dash
+chart_studio
+notebook
