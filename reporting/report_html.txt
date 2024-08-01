@@ -1,0 +1,21 @@
+<head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>My Plotly Report</h1>
+    <div id='divPlotly1'>    
+        <h2>Figure 1</h2>
+        <script>
+            var plotly_data = {}
+            Plotly.react('divPlotly', plotly_data.data, plotly_data.layout);
+        </script>
+    </div>
+    <div id='divPlotly2'>    
+        <h2>Figure 2</h2>
+        <script>
+            var plotly_data = {}
+            Plotly.react('divPlotly', plotly_data.data, plotly_data.layout);
+        </script>
+    </div>
+</body>
+</html>

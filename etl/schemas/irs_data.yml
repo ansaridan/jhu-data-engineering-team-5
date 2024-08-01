@@ -8,10 +8,8 @@ tables:
             type: TEXT
             description: Description of the data field
 
-  - irs_data:
+  - nyc_irs:
         columns:
-          - name: id
-            type: SERIAL PRIMARY KEY
           - name: STATEFIPS
             type: VARCHAR(50)
           - name: STATE
