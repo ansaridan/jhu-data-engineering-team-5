@@ -71,8 +71,8 @@ def read_yaml_to_dict(yaml_file: Union[str, Path]) -> dict:
         data = yaml.safe_load(file)
     return data
 
-def generate_create_table_statement(schema:str, schema_data:dict) -> str:
-    table_name = schema_data['name']
+def generate_create_table_statement(schema:str, table_name:str, 
+ schema_data:dict) -> str:
     columns = schema_data['columns']
     
     column_definitions = []
@@ -87,13 +87,14 @@ def generate_create_table_statement(schema:str, schema_data:dict) -> str:
 def drop_recreate_table(
     *,
     db_schema: str,
+    table_name: str,
     table_schema: dict,
     conn: psql_ext.connection
 ) -> None:
     try:
         with conn.cursor() as cursor:
-            print(f'Dropping {db_schema}.{table_schema["name"]}')
-            drop_statement = f'DROP TABLE IF EXISTS {db_schema}.{table_schema["name"]}'
+            print(f'Dropping {db_schema}.{table_name}')
+            drop_statement = f'DROP TABLE IF EXISTS {db_schema}.{table_name}'
             cursor.execute(drop_statement)
             conn.commit()
     except Exception as e:
@@ -102,8 +103,8 @@ def drop_recreate_table(
 
     try:
         with conn.cursor() as cursor:
-            print(f'Creating {db_schema}.{table_schema["name"]}')
-            create_statement = generate_create_table_statement(db_schema, table_schema)
+            print(f'Creating {db_schema}.{table_name}')
+            create_statement = generate_create_table_statement(db_schema, table_name, table_schema)
             cursor.execute(create_statement)
             conn.commit()
     except Exception as e:
@@ -116,9 +117,10 @@ def upload_dataframe(
     dataframe: pd.DataFrame,
     db_schema: str,
     table_name: str,
+    table_schema: dict,
 ) -> None:
-    data_dict = dataframe.to_dict(orient='records')
-    columns = data_dict[0].keys()
+    columns = [col["name"] for col in table_schema["columns"]]
+    data_dict = dataframe[columns].to_dict(orient='records')
     query = 'INSERT INTO {}.{} ({}) VALUES %s'.format(
         db_schema,
         table_name,

@@ -1,0 +1,33 @@
+,wxcode,meaning
+0,-,Light Moderate
+1,+,Heavy
+2,VC,In the Vicinity
+3,MI,Shallow
+4,PR,Partial
+5,BC,Patches
+6,DR,Low Drifting
+7,BL,Blowing
+8,SH,Showers
+9,TS,Thunderstorm
+10,FZ,Freezing
+11,DZ,Drizzle
+12,RA,Rain
+13,SN,Snow
+14,SG,Snow Grains
+15,IC,Ice Cystals
+16,PL,Ice Pellets
+17,GR,Hail
+18,GS,Small Hail and/or Snow Pellets
+19,UP,Unknown Precipitation
+20,BR,Mist
+21,FG,Fog
+22,FU,Smoke
+23,VA,Volcanic Ash
+24,DU,Widespread Dust
+25,SA,Sand
+26,HZ,Haze
+27,PY,Spray
+28,PO,Well-Developed Dust/Sand Whirls
+29,SQ,Squalls
+30,FC,Funnel Cloud Tornado Waterspout
+31,SS,Sandstorm
