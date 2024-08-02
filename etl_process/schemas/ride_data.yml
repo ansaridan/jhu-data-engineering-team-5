@@ -1,0 +1,24 @@
+tables:
+  - citibike_station_history:
+      columns:
+        - name: station_id
+          type: VARCHAR
+          description: station unique id
+        - name: year
+          type: INT
+          description: year of observation
+        - name: month
+          type: INT
+          description: month of observation
+        - name: day
+          type: INT
+          description: day of observation
+        - name: hour
+          type: INT
+          description: hour of observation
+        - name: num_inbound
+          type: INT
+          description: number of inbound rides 
+        - name: num_outbound
+          type: INT
+          description: number of outbound rides
