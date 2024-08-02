@@ -20,7 +20,6 @@ services:
       - ./:/home/awesome
     depends_on:
       - postgres
-      - mongodb
     environment:
       - AIRFLOW_HOME=/home/awesome/airflow
       - AIRFLOW__CORE__DAGS_FOLDER=/home/awesome/dags
@@ -31,13 +30,3 @@ services:
       service cron start &&
       jupyter lab --ip=0.0.0.0 --no-browser --allow-root &&
       chmod 0600 /home/awesome/.local/share/jupyter/runtime/jupyter_cookie_secret"
-
-  mongodb:
-    image: mongo:7.0.10-rc0-jammy
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongodb_data:/data/db
-
-volumes:
-  mongodb_data:

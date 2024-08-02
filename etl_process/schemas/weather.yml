@@ -98,24 +98,12 @@ tables:
             type: TIME 
             description: 
 
-  - weather_precip:
-      columns:
-          - name: valid 
-            type: TIMESTAMP NOT NULL 
 
-
-              #       id SERIAL PRIMARY KEY,
-  #       valid timestamp NOT NULL,
-  #       date DATE,
-  #       time TIME,
-  #       hour VARCHAR,
-  #       altimeter FLOAT,
-  #       sea_level_pressure FLOAT
   - pressure:
       columns:
           - name: valid
-           type: TIMESTAMP NOT NULL 
-           description: 
+            type: TIMESTAMP NOT NULL 
+            description: 
           - name: date
             type: DATE 
             description: 
