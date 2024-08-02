@@ -34,7 +34,8 @@ cd jhu-data-engineering-team-5
 5.  Create the Docker image from the repo's specifications
 
 ```
-docker-compose up
+export COMPOSE_HTTP_TIMEOUT=200
+docker-compose up --build
 ```
 5.   Start the created containers in Docker
 
