@@ -11,31 +11,8 @@ import numpy as np
 # Suppress warnings
 warnings.filterwarnings("ignore")
 
-# Drop tables if exist to avoid double adding
 
-# Database connection parameters
-dbname = 'new_db'
-user = 'awesome_user'
-password = 'awesome_password'
-host = 'localhost'
-port = '5432'
-
-# Create a connection to the PostgreSQL database
-conn = psycopg2.connect(dbname=dbname, user=user, password=password, host=host, port=port)
-c = conn.cursor()
-
-# Define the schema to be dropped if it exists and everything in it
-query = "DROP SCHEMA IF EXISTS historical_data CASCADE;"
-# Execute the drop table command
-c.execute(query)
-conn.commit()
-
-# Close the cursor and connection
-c.close()
-conn.close()
-
-print(f"Schema dropped successfully.")
-
+# url and file to download 2023
 url = 'https://s3.amazonaws.com/tripdata/2023-citibike-tripdata.zip'
 local_filename = '2023-citibike-tripdata.zip'
 
@@ -43,16 +20,70 @@ local_filename = '2023-citibike-tripdata.zip'
 with requests.get(url, stream=True) as response:
     response.raise_for_status()
     with open(local_filename, 'wb') as file:
-        for chunk in response.iter_content(chunk_size=81921048576):
+        for chunk in response.iter_content(chunk_size=8192):
             file.write(chunk)
 
 print(f'Downloaded {local_filename}')
 
-# Unzip 2023 file 
-with zipfile.ZipFile(local_filename, 'r') as zip_ref:
-    zip_ref.extractall('citibike_data_2023')
+# unizip main file - 2023
+file = "2023-citibike-tripdata.zip"
+with zipfile.ZipFile(file, 'r') as main_zip:
+    main_zip.extractall()
 
-print('Unzipped the file.')
+# unip month files of interest
+file_list = ["202306-citibike-tripdata.zip",  "202307-citibike-tripdata.zip",  "202308-citibike-tripdata.zip",
+             "202309-citibike-tripdata.zip", "202310-citibike-tripdata.zip",  "202311-citibike-tripdata.zip",
+            "202312-citibike-tripdata.zip"]
+
+main_path = "2023-citibike-tripdata/"
+for file in file_list: 
+    total_path = main_path + file
+    new_location = main_path + file[0:6]
+    with zipfile.ZipFile(total_path, 'r') as main_zip: 
+        main_zip.extractall(new_location)
+
+# delete zip files
+total_file_list = ["202301-citibike-tripdata.zip",  "202302-citibike-tripdata.zip",  "202303-citibike-tripdata.zip",
+                   "202304-citibike-tripdata.zip", "202305-citibike-tripdata.zip",  "202306-citibike-tripdata.zip",
+                   "202307-citibike-tripdata.zip",  "202308-citibike-tripdata.zip", "202309-citibike-tripdata.zip", 
+                   "202310-citibike-tripdata.zip",  "202311-citibike-tripdata.zip", "202312-citibike-tripdata.zip"]
+
+# Remove the main zip file - 2023
+os.remove("2023-citibike-tripdata.zip")
+    
+# Remove each file in the file list
+for file in total_file_list:
+    path = f'2023-citibike-tripdata/{file}'
+    if os.path.isfile(path):
+        os.remove(path)
+        print(f'Deleted file: {path}')
+    else:
+        print(f"File not found: {path}")
+
+# function to delete local files
+def delete_folder_contents(folder_path):
+    if os.path.exists(folder_path):
+        # Loop over all the files and directories in the main folder
+        for root, dirs, files in os.walk(folder_path, topdown=False):
+            for name in files:
+                file_path = os.path.join(root, name)
+                os.remove(file_path)
+            for name in dirs:
+                dir_path = os.path.join(root, name)
+                os.rmdir(dir_path)
+        # Delete main folder 
+        os.rmdir(folder_path)
+        print(f'Delete {folder_path}')
+    else:
+        print(f'The directory {folder_path} does not exist.')
+
+# function to determine if float
+def is_float(value):
+    try:
+        float(value)
+        return True
+    except ValueError:
+        return False
 
 # function to clean data
 def cleaning_data(df): 
@@ -130,122 +161,31 @@ def station_extraction(df):
     
     return(all_stations)
 
-def insert_database(df, table_name, db_credentials):
-
-    df = df 
-    # Establish database connection
-    conn = psycopg2.connect(dbname=db_credentials["dbname"], 
-                            user=db_credentials["user"], 
-                            password=db_credentials["password"], 
-                            host=db_credentials["host"],
-                            port=db_credentials["port"])
-        
-    # Creating a cursor object using the cursor() method
-    c = conn.cursor()
-
-    # Define the new schema name
-    new_schema = 'historical_data'
-
-    # Create the new schema
-    cursor.execute(sql.SQL("CREATE SCHEMA {}").format(sql.Identifier(new_schema)))
-        
-    if table_name == "citibike_station_history":
-        c.execute('''CREATE TABLE IF NOT EXISTS historical_data.citibike_station_history(
-              station_id REAL, 
-              year INT,
-              month INT, 
-              day INT, 
-              hour INT, 
-              num_inbound INT,
-              num_outbound INT, 
-              PRIMARY KEY (station_id, year, month, day, hour)
-              )
-              ''')
-        conn.commit()
-
-        insert_query = '''INSERT INTO historical_data.citibike_station_history (
-        station_id, 
-        year,
-        month,
-        day,
-        hour,
-        num_inbound, 
-        num_outbound
-                ) VALUES %s
-        ON CONFLICT (station_id, year, month, day, hour)
-        DO UPDATE SET
-        num_inbound = citibike_station_history.num_inbound + EXCLUDED.num_inbound,
-        num_outbound = citibike_station_history.num_outbound + EXCLUDED.num_outbound'''
-    
-    elif table_name == "station_info": 
-        c.execute('''CREATE TABLE IF NOT EXISTS historical_data.station_info(
-                  station_id INT PRIMARY KEY, 
-                  name TEXT,
-                  latitude REAL, 
-                  longitude REAL
-                  )
-                  ''')
-        conn.commit()
-
-        insert_query = '''INSERT INTO historical_data.station_info (
-        station_id, 
-        name,
-        latitude,
-        longitude
-        ) VALUES %s'''
-
-    # Convert to list of tuples for batch insert and ensure native Python types
-    flat_df = [tuple(map(lambda x: x.item() if isinstance(x, np.generic) else x, row)) for row in df.to_numpy()]
-    
-    # Execute batch insert
-    execute_values(c, insert_query, flat_df)
-    conn.commit()
-
-    # Close cursor and connection
-    c.close()
-    conn.close()
-
-
-# function to delete local files
-def delete_folder_contents(folder_path):
-    if os.path.exists(folder_path):
-        # Loop over all the files and directories in the main folder
-        for root, dirs, files in os.walk(folder_path, topdown=False):
-            for name in files:
-                file_path = os.path.join(root, name)
-                os.remove(file_path)
-            for name in dirs:
-                dir_path = os.path.join(root, name)
-                os.rmdir(dir_path)
-        # Delete main folder 
-        os.rmdir(folder_path)
-    else:
-        print(f"The directory {folder_path} does not exist.")
-
-# function to determine if float
-def is_float(value):
-    try:
-        float(value)
-        return True
-    except ValueError:
-        return False
 
 # empty list to store station info dataframes for each month
 station_info_1 = []
+
 # List all folder months we care about
-folders = ["6_June", "7_July", "8_August", 
-           "9_September", "10_October", "11_November", 
-           "12_December"]
+folders = [f"2023{month:02d}" for month in range(6, 13)]
+
+# count
+count = 0
+
+# define new folder path for cleaned csvs
+new_folder_path = 'cleaned_historical_data'
+
+# Create the new folder if it doesn't exist
+os.makedirs(new_folder_path, exist_ok=True)
 
 for folder in folders:
     # empty list of dataframes
     dataframes = []
-    folder_path = f'citibike_data_2023/2023-citibike-tripdata/{folder}'
+    folder_path = f'2023-citibike-tripdata/{folder}'
     contents = os.listdir(folder_path)
     for file in contents:
         if file.endswith('.csv'):
-            file_path = os.path.join(folder_path, file)
-            dtype = {"station_id":"object"}
+            file_path = os.path.join(folder_path,file)
+            dtype = {"start_station_id":"object","end_station_id":"object"}
             df = pd.read_csv(file_path, dtype=dtype)
             
             # drops all occurrences where station_id is not float
@@ -261,14 +201,14 @@ for folder in folders:
 
     cleaned_df = cleaning_data(combined_df)
 
-    # insert data into postgres sql database
-    db_credentials = {"dbname": "new_db", 
-                  "user":"awesome_user",
-                  "password": "awesome_password",
-                  "host": "localhost", 
-                  "port": "5432"}
-    
-    insert_database(cleaned_df, "citibike_station_history", db_credentials)
+    # write to new cleaned_csv
+    cleaned_df.to_csv(f'cleaned_historical_data/cleaned_data_historical_{count}.csv', index=False)
+
+    # Print progress
+    print(f'Created {count}/11 csvs.')
+
+    # increase count by 1
+    count = count + 1
 
     # add station information to list
     station_info_1.append(station_extraction(combined_df))
@@ -278,6 +218,8 @@ for folder in folders:
     del cleaned_df
     gc.collect()
 
+    
+
 # Combine DataFrames
 combined_station_1 = pd.concat(station_info_1)
 
@@ -285,7 +227,9 @@ combined_station_1 = pd.concat(station_info_1)
 combined_station_1 = combined_station_1.drop_duplicates()
 
 # Write to csv
-combined_station_1.to_csv('station1.csv', index=False)
+combined_station_1.to_csv('cleaned_historical_data/station1.csv', index=False)
+
+# Print
 
 # Force deletion to avoid quit
 del combined_station_1
@@ -294,22 +238,18 @@ gc.collect()
 
 # Delete local files for 2023 citibike monthly data
 
-# Path/file to Delete
-folder_path_1 = 'citibike_data_2023'
-file = '2023-citibike-tripdata.zip'
+# Path/folderto Delete
+folder = '2023-citibike-tripdata'
 
 # Use the function to delete the folder and its contents
-delete_folder_contents(folder_path_1)
-os.remove(file)
+delete_folder_contents(folder)
 
 # Download and unzip 2024 data
 
 local_filenames = ['202401-citibike-tripdata.csv.zip',
                    '202402-citibike-tripdata.csv.zip',
                    '202403-citibike-tripdata.csv.zip',
-                   '202404-citibike-tripdata.zip',
-                   '202405-citibike-tripdata.zip',
-                   '202406-citibike-tripdata.zip']
+                   '202404-citibike-tripdata.csv.zip']
                    
 for local_filename in local_filenames:
                    
@@ -319,20 +259,13 @@ for local_filename in local_filenames:
     with requests.get(url, stream=True) as response:
         response.raise_for_status()
         with open(local_filename, 'wb') as file:
-            for chunk in response.iter_content(chunk_size=81921048576):
+            for chunk in response.iter_content(chunk_size=8192):
                 file.write(chunk)
     # Unzip file 
     with zipfile.ZipFile(local_filename, 'r') as zip_ref:
         zip_ref.extractall(f'{local_filename[:-4]}')
     
     print(f'Downloaded and unzipped {local_filename[:-4]}')
-
-local_filenames = ['202401-citibike-tripdata.csv.zip',
-                   '202402-citibike-tripdata.csv.zip',
-                   '202403-citibike-tripdata.csv.zip',
-                   '202404-citibike-tripdata.zip',
-                   '202405-citibike-tripdata.zip',
-                   '202406-citibike-tripdata.zip']
 
 # empty list for 2024 station info
 station_info_2 = []
@@ -347,7 +280,7 @@ for folder in folders:
     for file in contents:
         if file.endswith('.csv'):
             file_path = os.path.join(folder, file)
-            dtype = {"station_id":"object"}
+            dtype = {"start_station_id":"object","end_station_id":"object"}
             df = pd.read_csv(file_path, dtype=dtype)
             
             # drops all occurrences where station_id is not float
@@ -363,14 +296,13 @@ for folder in folders:
 
     cleaned_df = cleaning_data(combined_df)
 
-    # insert data into postgres sql database
-    db_credentials = {"dbname": "new_db", 
-                  "user":"awesome_user",
-                  "password": "awesome_password",
-                  "host": "localhost", 
-                  "port": "5432"}
-    
-    insert_database(cleaned_df, "citibike_station_history", db_credentials)
+    # write to new cleaned_csv
+    cleaned_df.to_csv(f'cleaned_historical_data/cleaned_data_historical_{count}.csv', index=False)
+    # Print progress
+    print(f'Created {count}/11 csvs.')
+
+    # increase count by 1
+    count = count + 1
 
     # add station information to list
     station_info_2.append(station_extraction(combined_df))
@@ -395,11 +327,10 @@ station_2 = station_2.drop_duplicates()
 station_combined = pd.concat([station_1, station_2]).drop_duplicates()
 station_combined = station_combined.drop_duplicates()
 
-table_name = "station_info"
+station_combined.to_csv("cleaned_historical_data/station_cleaned.csv", index=False)
 
-db_credentials = {"dbname": "new_db", 
-                  "user":"awesome_user",
-                  "password": "awesome_password",
-                  "host": "localhost", 
-                  "port": "5432"}
-insert_database(station_combined, table_name , db_credentials)
+# Print progress
+print(f'Created {count}/11 csvs.')
+
+# Delete station1.csv
+os.remove("station1.csv")           
