@@ -1,7 +1,5 @@
 tables:
   - irs_codes:
-        primary_key:
-          - Code
         columns:
           - name: Code
             type: VARCHAR(50)
@@ -11,16 +9,13 @@ tables:
             description: Description of the data field
 
   - nyc_irs:
-        primary_key:
-          - zipcode
-          - agi_stub
         columns:
-          - name: zipcode
-            type: TEXT
           - name: STATEFIPS
             type: VARCHAR(50)
           - name: STATE
             type: TEXT
+          - name: zipcode
+            type: INTEGER
           - name: agi_stub
             type: NUMERIC
           - name: N1
@@ -261,4 +256,96 @@ tables:
             type: NUMERIC
           - name: A07260
             type: NUMERIC
+          - name: N09400
+            type: NUMERIC
+          - name: A09400
+            type: NUMERIC
+          - name: N85770
+            type: NUMERIC
+          - name: A85770
+            type: NUMERIC
+          - name: N85775
+            type: NUMERIC
+          - name: A85775
+            type: NUMERIC
+          - name: N10600
+            type: NUMERIC
+          - name: A10600
+            type: NUMERIC
+          - name: N59660
+            type: NUMERIC
+          - name: A59660
+            type: NUMERIC
+          - name: N59720
+            type: NUMERIC
+          - name: A59720
+            type: NUMERIC
+          - name: N11070
+            type: NUMERIC
+          - name: A11070
+            type: NUMERIC
+          - name: N10960
+            type: NUMERIC
+          - name: A10960
+            type: NUMERIC
+          - name: N11560
+            type: NUMERIC
+          - name: A11560
+            type: NUMERIC
+          - name: N11450
+            type: NUMERIC
+          - name: A11450
+            type: NUMERIC
+          - name: N11520
+            type: NUMERIC
+          - name: A11520
+            type: NUMERIC
+          - name: N11530
+            type: NUMERIC
+          - name: A11530
+            type: NUMERIC
+          - name: N10970
+            type: NUMERIC
+          - name: A10970
+            type: NUMERIC
+          - name: N10971
+            type: NUMERIC
+          - name: A10971
+            type: NUMERIC
+          - name: N06500
+            type: NUMERIC
+          - name: A06500
+            type: NUMERIC
+          - name: N10300
+            type: NUMERIC
+          - name: A10300
+            type: NUMERIC
+          - name: N85530
+            type: NUMERIC
+          - name: A85530
+            type: NUMERIC
+          - name: N85300
+            type: NUMERIC
+          - name: A85300
+            type: NUMERIC
+          - name: N11901
+            type: NUMERIC
+          - name: A11901
+            type: NUMERIC
+          - name: N11900
+            type: NUMERIC
+          - name: A11900
+            type: NUMERIC
+          - name: N11902
+            type: NUMERIC
+          - name: A11902
+            type: NUMERIC
+          - name: N12000
+            type: NUMERIC
+          - name: A12000
+            type: NUMERIC
+          - name: Borough
+            type: TEXT
+          - name: Neighborhood
+            type: TEXT
        
