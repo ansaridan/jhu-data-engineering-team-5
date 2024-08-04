@@ -1,8 +1,10 @@
 tables:
   - station_info:
+        primary_key:
+          - short_name
         columns:
           - name: short_name
-            type: VARCHAR PRIMARY KEY
+            type: VARCHAR
             description: shortened id of the station name
           - name: station_id
             type: VARCHAR

@@ -71,8 +71,7 @@ def read_yaml_to_dict(yaml_file: Union[str, Path]) -> dict:
         data = yaml.safe_load(file)
     return data
 
-def generate_create_table_statement(schema:str, table_name:str, 
- schema_data:dict) -> str:
+def generate_create_table_statement(schema: str, table_name: str, schema_data: dict) -> str:
     columns = schema_data['columns']
     
     column_definitions = []
@@ -80,9 +79,18 @@ def generate_create_table_statement(schema:str, table_name:str,
         column_definitions.append(f"{column['name']} {column['type']}")
     
     columns_str = ",\n  ".join(column_definitions)
-    create_table_statement = f"CREATE TABLE {schema}.{table_name} (\n  {columns_str}\n);"
+    
+    # Add primary key clause if primary_key is present in schema_data
+    if 'primary_key' in schema_data:
+        primary_key_cols = ", ".join(schema_data['primary_key'])
+        primary_key_clause = f",\n  PRIMARY KEY ({primary_key_cols})"
+    else:
+        primary_key_clause = ""
+    
+    create_table_statement = f"CREATE TABLE {schema}.{table_name} (\n  {columns_str}{primary_key_clause}\n);"
     
     return create_table_statement
+
 
 def drop_recreate_table(
     *,
@@ -121,12 +129,26 @@ def upload_dataframe(
 ) -> None:
     columns = [col["name"] for col in table_schema["columns"]]
     data_dict = dataframe[columns].to_dict(orient='records')
-    query = 'INSERT INTO {}.{} ({}) VALUES %s'.format(
+    
+    # Prepare the ON CONFLICT clause if primary_key is present
+    if "primary_key" in table_schema:
+        primary_key_cols = table_schema["primary_key"]
+        conflict_target = ','.join(primary_key_cols)
+        update_cols = [col for col in columns if col not in primary_key_cols]
+        update_set = ', '.join([f"{col} = EXCLUDED.{col}" for col in update_cols])
+        conflict_clause = f" ON CONFLICT ({conflict_target}) DO UPDATE SET {update_set}"
+    else:
+        conflict_clause = ""
+    
+    query = 'INSERT INTO {}.{} ({}) VALUES %s{}'.format(
         db_schema,
         table_name,
-        ','.join(columns)
+        ','.join(columns),
+        conflict_clause
     )
+    
     values = [[value for value in data.values()] for data in data_dict]
+    
     try:
         with conn.cursor() as cursor:
             psycopg2.extras.execute_values(cursor, query, values)

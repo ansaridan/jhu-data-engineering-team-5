@@ -1,5 +1,7 @@
 tables:
   - irs_codes:
+        primary_key:
+          - Code
         columns:
           - name: Code
             type: VARCHAR(50)
@@ -9,12 +11,15 @@ tables:
             description: Description of the data field
 
   - nyc_irs:
+        primary_key:
+          - zipcode
+          - agi_stub
         columns:
+          - name: zipcode
+            type: TEXT
           - name: STATEFIPS
             type: VARCHAR(50)
           - name: STATE
-            type: TEXT
-          - name: zipcode
             type: TEXT
           - name: agi_stub
             type: NUMERIC

@@ -1,5 +1,11 @@
 tables:
   - citibike_station_history:
+      primary_key:
+        - station_id
+        - year
+        - month
+        - day
+        - hour
       columns:
         - name: station_id
           type: VARCHAR

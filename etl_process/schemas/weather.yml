@@ -1,8 +1,10 @@
 tables:
   - weather_general:
+      primary_key:
+          - valid
       columns:
-          - name: valid 
-            type: TIMESTAMP NOT NULL 
+          - name: valid
+            type: TIMESTAMP
             description: 
           - name: date
             type: DATE 
@@ -30,9 +32,11 @@ tables:
             description: 
 
   - weather_precip:
+      primary_key:
+          - valid
       columns:
           - name: valid 
-            type: TIMESTAMP NOT NULL 
+            type: TIMESTAMP
             description: 
           - name: date
             type: DATE 
@@ -65,10 +69,12 @@ tables:
             type: VARCHAR 
             description: 
 
-  - wind: 
+  - weather_wind: 
+      primary_key:
+          - valid
       columns:
           - name: valid
-            type: TIMESTAMP NOT NULL 
+            type: TIMESTAMP
             description: 
           - name: date
             type: DATE 
@@ -99,10 +105,12 @@ tables:
             description: 
 
 
-  - pressure:
+  - weather_pressure:
+      primary_key:
+          - valid
       columns:
           - name: valid
-            type: TIMESTAMP NOT NULL 
+            type: TIMESTAMP
             description: 
           - name: date
             type: DATE 
