@@ -1,3 +1,7 @@
+### File used to download 2023 (June - Decemeber) and 2024 (January - June) citibike monthly data ###
+### Transforms columns to station id, month, hour, year, num_outbound, num_inbound and saves as iindividual csv by month ###
+### saves the station_id information for all stations (name, lat, long) as an additional csv ###
+
 import requests
 import zipfile
 import os
@@ -205,7 +209,7 @@ for folder in folders:
     cleaned_df.to_csv(f'cleaned_historical_data/cleaned_data_historical_{count}.csv', index=False)
 
     # Print progress
-    print(f'Created {count}/11 csvs.')
+    print(f'Created {count}/14 csvs.')
 
     # increase count by 1
     count = count + 1
@@ -249,7 +253,9 @@ delete_folder_contents(folder)
 local_filenames = ['202401-citibike-tripdata.csv.zip',
                    '202402-citibike-tripdata.csv.zip',
                    '202403-citibike-tripdata.csv.zip',
-                   '202404-citibike-tripdata.csv.zip']
+                   '202404-citibike-tripdata.csv.zip',
+                   '202405-citibike-tripdata.zip', 
+                   '202406-citibike-tripdata.zip']
                    
 for local_filename in local_filenames:
                    
@@ -299,7 +305,7 @@ for folder in folders:
     # write to new cleaned_csv
     cleaned_df.to_csv(f'cleaned_historical_data/cleaned_data_historical_{count}.csv', index=False)
     # Print progress
-    print(f'Created {count}/11 csvs.')
+    print(f'Created {count}/14 csvs.')
 
     # increase count by 1
     count = count + 1
@@ -330,7 +336,7 @@ station_combined = station_combined.drop_duplicates()
 station_combined.to_csv("cleaned_historical_data/station_cleaned.csv", index=False)
 
 # Print progress
-print(f'Created {count}/11 csvs.')
+print(f'Created {count}/14 csvs.')
 
 # Delete station1.csv
 os.remove("station1.csv")           
