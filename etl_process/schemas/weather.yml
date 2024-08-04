@@ -44,7 +44,7 @@ tables:
             type: VARCHAR 
             description: 
           - name: one_hour_precip_amount
-            type: VARCHAR 
+            type: VARCHAR
             description: 
           - name: wxcode1
             type: VARCHAR 
