@@ -44,7 +44,7 @@ cd jhu-data-engineering-team-5
 
 The below forces a full image recreation for consistency but can be truncated at `up` for subsequent runs.
 ```
-docker-compose up --build --force-recreate --no-cache
+docker-compose up --build --force-recreate
 ```
 
 5.  Build the database from within the docker container
