@@ -65,7 +65,7 @@ tables:
             type: VARCHAR 
             description: 
 
-  - wind: 
+  - weather_wind: 
       columns:
           - name: valid
             type: TIMESTAMP NOT NULL 
@@ -99,7 +99,7 @@ tables:
             description: 
 
 
-  - pressure:
+  - weather_pressure:
       columns:
           - name: valid
             type: TIMESTAMP NOT NULL 
@@ -119,81 +119,30 @@ tables:
           - name: sea_level_pressure
             type: FLOAT 
             description: 
-  
 
-  # - name: wxcode
-  #   columns:
-  #     - name: 
-  #       type: VARCHAR 
-  #       description: 
-  #     - name: 
-  #       type: VARCHAR 
-  #       description: 
-  #     - name: 
-  #       type: VARCHAR 
-  #       description: 
-  #     - name: 
-  #       type: VARCHAR 
-  #       description: 
-  #     - name: 
-  #       type: VARCHAR 
-  #       description: 
-  #     - name: 
-  #       type: VARCHAR 
-  #       description: 
-  #     - name: 
-  #       type: VARCHAR 
-  #       description: 
-  #     - name: 
-  #       type: VARCHAR 
-  #       description: 
-  #     - name: 
-  #       type: VARCHAR 
-  #       description: 
-  #     - name: 
-  #       type: VARCHAR 
-  #       description: 
-        
-  #       id SERIAL PRIMARY KEY,
-  #       wxcode VARCHAR,
-  #       meaning VARCHAR
+  - weather_wxcode:
+      columns:
+          - name: wxcode
+            type: VARCHAR 
+            description: 
+          - name: meaning
+            type: VARCHAR 
+            description: 
 
-  # - name: sky_coverage
-  #   columns:
-  #     - name: 
-  #       type: VARCHAR 
-  #       description: 
-  #     - name: 
-  #       type: VARCHAR 
-  #       description: 
-  #     - name: 
-  #       type: VARCHAR 
-  #       description: 
-  #     - name: 
-  #       type: VARCHAR 
-  #       description: 
-  #     - name: 
-  #       type: VARCHAR 
-  #       description: 
-  #     - name: 
-  #       type: VARCHAR 
-  #       description: 
-  #     - name: 
-  #       type: VARCHAR 
-  #       description: 
-  #     - name: 
-  #       type: VARCHAR 
-  #       description: 
-  #     - name: 
-  #       type: VARCHAR 
-  #       description: 
-  #     - name: 
-  #       type: VARCHAR 
-  #       description: 
-        
-  #       id SERIAL PRIMARY KEY,
-  #       valid timestamp NOT NULL,
-  #       date DATE,
-  #       time TIME,
-  #       hour VARCHAR,
-  #       sky_coverage VARCHAR
+  - weather_sky_coverage:
+       columns:
+          - name: valid
+            type: TIMESTAMP NOT NULL
+            description: 
+          - name: date
+            type: DATE
+            description: 
+          - name: time
+            type: TIME 
+            description: 
+          - name: hour
+            type: VARCHAR 
+            description: 
+          - name: sky_coverage
+            type: VARCHAR 
+            description: 
