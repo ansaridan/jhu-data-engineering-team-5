@@ -51,7 +51,7 @@ After confirming that the containers are running (especially the Postgres contai
 ```
 python3 etl_process/etl.py
 ```
-Alternatively, this has been configured as an airflow task in the `generate_database` DAG.
+This file should output logs along the way, but will take 5-10 minutes to run.
 
 ---
 
@@ -59,13 +59,18 @@ Alternatively, this has been configured as an airflow task in the `generate_data
 After ensuring that the docker containers are running, and the ETL script has run successfully, you can interact with our data environment as follows. We have configured our `docker-compose` to start each of the Jupyter Notebooks, Airflow Webserver+Scheduler and API apps, but it's worth checking that they are all up and running.
 
 ## Running automated reporting in Airflow
-- 
+- You can access the Airflow webserver at `http://localhost:8080/home` with username/password = admin@example.com/admin
+- Inside Airflow, you can run the report by turning on the `run_report_dag`
+- The resulting interactive HTML reports will appear in `reporting/reports` and can be viewed in Chrome
 
 ## Running/Using the Flask API
-- 
+- The Flask API can be found at `http://localhost:8001` and has a few key functinoailities:
+  - `/get_station_ids` = TKTK Hannah to Document
+  - `/read_precip_data` = TKTK Hannah to Document
+  - `/read_general_data` = TKTK Hannah to Document
 
 ## Running Jupyter for Development
-- Follow the link in the running image and put in the provided token
+- You can use Jupyter for development at `localhost:8080` with the token provided in the container logs
 
 ---
 
