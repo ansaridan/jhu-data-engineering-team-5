@@ -5,7 +5,7 @@ Hannah Haas, Jeremy Hirschler, Isabel Perry, Dan Ansari
 
 ---
 
-## Project Description
+# Project Description
 This repository contains all of the code to:
 - **Coallate Data**: coallates data from the Citibike rideshare program in NYC, alongside weather and demographic data
 - **Build a Database**: creates a Postgres database of the collected data
