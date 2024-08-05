@@ -42,9 +42,8 @@ cd jhu-data-engineering-team-5
 
 5.  Create the Docker image from the repo's specifications + start the containers
 
-The below forces a full image recreation for consistency but can be truncated at `up` for subsequent runs.
 ```
-docker-compose up --build --force-recreate
+docker-compose up --build
 ```
 
 5.  Build the database from within the docker container
@@ -52,14 +51,15 @@ After confirming that the containers are running (especially the Postgres contai
 ```
 python3 etl_process/etl.py
 ```
+Alternatively, this has been configured as an airflow task in the `generate_database` DAG.
 
 ---
 
 # Using the data outputs
-After ensuring that the docker containers are running, and the ETL script has run successfully, you can interact with our data environment as follows:
+After ensuring that the docker containers are running, and the ETL script has run successfully, you can interact with our data environment as follows. We have configured our `docker-compose` to start each of the Jupyter Notebooks, Airflow Webserver+Scheduler and API apps, but it's worth checking that they are all up and running.
 
 ## Running automated reporting in Airflow
-- Follow the link in the running image and use the username/password in the Docker file
+- 
 
 ## Running/Using the Flask API
 - 
