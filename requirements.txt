@@ -4,6 +4,8 @@ cryptography
 duckdb
 polars
 psycopg2-binary
+geopandas
+shapely
 matplotlib
 plotly
 notebook

@@ -27,3 +27,6 @@ tables:
           - name: rental_uris
             type: VARCHAR
             description: JSON dict object of the rental uris of the station
+          - name: zip_code
+            type: VARCHAR
+            description: estimated zip code of the station
