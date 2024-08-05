@@ -77,24 +77,32 @@ After ensuring that the docker containers are running, and the ETL script has ru
 # Deliverables Summary
 
 The project requirements are:
-** [1] Create at least five separate tables based on the data schema**
+**[1] Create at least five separate tables based on the data schema**
 - The tables in our project are outlined in the `etl_process/schemas` folder
-** [2] Create an entity-relationship diagram (ERD) of your schema in PDF format, including any
+
+**[2] Create an entity-relationship diagram (ERD) of your schema in PDF format, including any
 keys or relationships**
 - The ERD diagram can be found in at `etl_process/erd`
-** [3] Create an automation and an API to export or consume an aggregated view or interesting report of the data.**
+
+**[3] Create an automation and an API to export or consume an aggregated view or interesting report of the data.**
 - See the above section `Running automated reporting in Airflow` and you can find the outputs in `reporting/reports`
-** [4] Jupyter Notebook(s) or Python script(s) containing the data transformation
+
+**[4] Jupyter Notebook(s) or Python script(s) containing the data transformation
 code.**
+
 The following scripts can be run after the environment set up to generate our processed CSV files:
 - script 1
 - script 2
 - script 2
-** [4] Have SQL script containing the table creation and data loading commands.**
+
+**[4] Have SQL script containing the table creation and data loading commands.**
 - The `etl_process.etl.py` script comingles Python and SQL commands around our schema YAML files and processed CSVs to set up the database
-** [5] Have automation code and a web API implementation in Python**
+
+**[5] Have automation code and a web API implementation in Python**
 - See above notes on the Flask API 
-** [6] Include required Docker files**
+
+**[6] Include required Docker files**
 - see the repo's `Dockerfile` and `docker-compose.yml`
-** [7] Include documentation file in PDF format (that can just be a save of this markdown file)**
+
+**[7] Include documentation file in PDF format (that can just be a save of this markdown file)**
 - see the PDF version of this file under `documentation.pdf`
