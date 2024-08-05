@@ -53,5 +53,3 @@ RUN chown -R awesome_user:awesome_user /home/awesome
 
 # Install Python packages from requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
-
-CMD ["python", "etl_process/etl.py"]
