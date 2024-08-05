@@ -1,0 +1,199 @@
+tables:
+  - weather_general:
+      columns:
+          - name: valid 
+            type: TIMESTAMP NOT NULL 
+            description: 
+          - name: date
+            type: DATE 
+            description: 
+          - name: time
+            type: TIME 
+            description: 
+          - name: hour
+            type: VARCHAR 
+            description: 
+          - name: temperature_f
+            type: FLOAT 
+            description: 
+          - name: dewpoint_f
+            type: FLOAT 
+            description: 
+          - name: relative_humidity
+            type: FLOAT 
+            description: 
+          - name: real_feel_f
+            type: FLOAT 
+            description: 
+          - name: visibility
+            type: FLOAT 
+            description: 
+
+  - weather_precip:
+      columns:
+          - name: valid 
+            type: TIMESTAMP NOT NULL 
+            description: 
+          - name: date
+            type: DATE 
+            description: 
+          - name: time
+            type: TIME 
+            description: 
+          - name: hour
+            type: VARCHAR 
+            description: 
+          - name: one_hour_precip_amount
+            type: VARCHAR 
+            description: 
+          - name: wxcode1
+            type: VARCHAR 
+            description: 
+          - name: wxcode2
+            type: VARCHAR 
+            description: 
+          - name: ice_accretion_1hr
+            type: VARCHAR 
+            description: 
+          - name: ice_accretion_3hr
+            type: VARCHAR 
+            description: 
+          - name: ice_accretion_6hr
+            type: VARCHAR 
+            description: 
+          - name: snowdepth
+            type: VARCHAR 
+            description: 
+
+  - wind: 
+      columns:
+          - name: valid
+            type: TIMESTAMP NOT NULL 
+            description: 
+          - name: date
+            type: DATE 
+            description: 
+          - name: time
+            type: TIME 
+            description: 
+          - name: hour
+            type: VARCHAR 
+            description: 
+          - name: direction 
+            type: FLOAT 
+            description: 
+          - name: windspeed_mph
+            type: FLOAT 
+            description: 
+          - name: windspeed_knots
+            type: FLOAT 
+            description: 
+          - name: max_windspeed_mph
+            type: FLOAT 
+            description: 
+          - name: max_windspeed_knots
+            type: FLOAT 
+            description: 
+          - name: max_windspeed_time
+            type: TIME 
+            description: 
+
+
+  - pressure:
+      columns:
+          - name: valid
+            type: TIMESTAMP NOT NULL 
+            description: 
+          - name: date
+            type: DATE 
+            description: 
+          - name: time
+            type: TIME 
+            description: 
+          - name: hour
+            type: VARCHAR 
+            description: 
+          - name: altimeter
+            type: FLOAT 
+            description: 
+          - name: sea_level_pressure
+            type: FLOAT 
+            description: 
+  
+
+  # - name: wxcode
+  #   columns:
+  #     - name: 
+  #       type: VARCHAR 
+  #       description: 
+  #     - name: 
+  #       type: VARCHAR 
+  #       description: 
+  #     - name: 
+  #       type: VARCHAR 
+  #       description: 
+  #     - name: 
+  #       type: VARCHAR 
+  #       description: 
+  #     - name: 
+  #       type: VARCHAR 
+  #       description: 
+  #     - name: 
+  #       type: VARCHAR 
+  #       description: 
+  #     - name: 
+  #       type: VARCHAR 
+  #       description: 
+  #     - name: 
+  #       type: VARCHAR 
+  #       description: 
+  #     - name: 
+  #       type: VARCHAR 
+  #       description: 
+  #     - name: 
+  #       type: VARCHAR 
+  #       description: 
+        
+  #       id SERIAL PRIMARY KEY,
+  #       wxcode VARCHAR,
+  #       meaning VARCHAR
+
+  # - name: sky_coverage
+  #   columns:
+  #     - name: 
+  #       type: VARCHAR 
+  #       description: 
+  #     - name: 
+  #       type: VARCHAR 
+  #       description: 
+  #     - name: 
+  #       type: VARCHAR 
+  #       description: 
+  #     - name: 
+  #       type: VARCHAR 
+  #       description: 
+  #     - name: 
+  #       type: VARCHAR 
+  #       description: 
+  #     - name: 
+  #       type: VARCHAR 
+  #       description: 
+  #     - name: 
+  #       type: VARCHAR 
+  #       description: 
+  #     - name: 
+  #       type: VARCHAR 
+  #       description: 
+  #     - name: 
+  #       type: VARCHAR 
+  #       description: 
+  #     - name: 
+  #       type: VARCHAR 
+  #       description: 
+        
+  #       id SERIAL PRIMARY KEY,
+  #       valid timestamp NOT NULL,
+  #       date DATE,
+  #       time TIME,
+  #       hour VARCHAR,
+  #       sky_coverage VARCHAR
