@@ -10,23 +10,66 @@ services:
       - "5432:5432"
     volumes:
       - ./:/home/awesome
+    networks:
+      app_network: {}
 
-  airflow-jupyter:
+  jupyter:
     build: .
     ports:
       - "8888:8888"
-      - "8080:8080"
     volumes:
       - ./:/home/awesome
     depends_on:
       - postgres
-    environment:
-      - AIRFLOW_HOME=/home/awesome/airflow
-      - AIRFLOW__CORE__DAGS_FOLDER=/home/awesome/dags
     command: >
       bash -c "
-      airflow db init &&
-      airflow users create -r Admin -u admin -p admin -e admin@example.com -f Admin -l User &&
-      service cron start &&
       jupyter lab --ip=0.0.0.0 --no-browser --allow-root &&
       chmod 0600 /home/awesome/.local/share/jupyter/runtime/jupyter_cookie_secret"
+    networks:
+      - app_network
+
+  airflow-webserver:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      ports:
+        - "8080:8080"
+      environment:
+        - AIRFLOW_HOME=/home/awesome/airflow
+        - AIRFLOW__CORE__DAGS_FOLDER=/home/awesome/dags
+      volumes:
+        - ./:/home/awesome
+      depends_on:
+        - postgres
+        - jupyter
+      command: >
+        bash -c "
+        airflow db init &&
+        airflow users create -r Admin -u admin -p admin -e admin@example.com -f Admin -l User &&
+        airflow webserver"
+      networks:
+        app_network: {}
+
+
+  airflow-scheduler:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      environment:
+        - AIRFLOW_HOME=/home/awesome/airflow
+        - AIRFLOW__CORE__DAGS_FOLDER=/home/awesome/dags
+      volumes:
+        - ./:/home/awesome
+      depends_on:
+        - postgres
+        - airflow-webserver
+      command: >
+        bash -c "
+        airflow scheduler"
+      networks:
+        app_network: {}
+
+  
+networks:
+  app_network:
+    driver: bridge

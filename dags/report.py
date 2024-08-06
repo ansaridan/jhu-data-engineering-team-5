@@ -222,7 +222,7 @@ with DAG('run_report_dag', default_args=default_args, schedule_interval='@daily'
             
                 stations AS (
                     SELECT
-                        zip_code,
+                        CAST(zip_code AS INT) AS zip_code,
                         SUM(capacity) AS station_capacity
                     FROM
                         {PROJECT_SCHEMA}.station_info
@@ -317,7 +317,7 @@ with DAG('run_report_dag', default_args=default_args, schedule_interval='@daily'
             """
             
             # Write the HTML report to a file
-            with open(REPORTING_PATH / 'reports' / 'report.html', 'w') as f:
+            with open(REPORTING_PATH / 'reports' / f'report_{datetime.strftime(datetime.now(), "%Y%m%d%H%M")}.html', 'w') as f:
                 f.write(template)
 
 
