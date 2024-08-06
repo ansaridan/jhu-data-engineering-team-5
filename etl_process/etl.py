@@ -82,6 +82,10 @@ def main():
         for file in [
             "weather_general",
             "weather_precip",
+            "weather_pressure",
+            "weather_sky_coverage",
+            "weather_wind",
+            "weather_wxcode",
         ]:
             df = pd.read_csv(DATA_PATH / "weather" / f"{file}.csv")
             etl.upload_dataframe(
