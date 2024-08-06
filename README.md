@@ -106,7 +106,7 @@ code.**
 
 The following scripts can be run after the environment set up to generate our processed CSV files:
 - `etl_process/clean_weather_data.ipynb`. To run this script, load follow the "Running Jupyter for Development" instructions on how to launch your JupyterLab environment.  Once it is open, navigate to the above location and open the clean_weather_data.ipynb file. Run the Jupyter-Notebook in succession to properly clean the raw NYC weather data. To run the individual cells, there is an arrow icon towards the top of the notebook.  Click that for every cell you enter. Some portions may take a minute or two to complete.  Once the script is finished running, the cleaned data is saved off and can be viewed in `etl_process/processed_data/weather/`.  
-- script 2
+- * `etl_process/ride_data.py`. To run this script, load follow the "Running Jupyter for Development" instructions on how to launch your JupyterLab environment. Once it is open, open a new terminal. Use the command `python3 ride_data.py` to run the script. It will download the the raw citibike monthly run data from all of 2023 and until June 2024 and save the transformed clean data into 13 csvs (June 2023 - June 2024). You will be able to track the progress of this etc process, but expect it to take approximately 20 mins. The resulting processed data can also be viewed in etl_process/processed_data/rides/station_traffic.
 - script 2
 
 **[4] Have SQL script containing the table creation and data loading commands.**
