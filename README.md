@@ -64,10 +64,14 @@ After ensuring that the docker containers are running, and the ETL script has ru
 - The resulting interactive HTML reports will appear in `reporting/reports` and can be viewed in Chrome
 
 ## Running/Using the Flask API
-- The Flask API can be found at `http://localhost:8001` and has a few key functinoailities:
-  - `/get_station_ids` = TKTK Hannah to Document
-  - `/read_precip_data` = TKTK Hannah to Document
-  - `/read_general_data` = TKTK Hannah to Document
+You can test the Flask API in a number of ways. From within the Jupyter container, it can be started in a CLI with `python3 api/api.py` and then tested at `http://localhost:8001`. There is also a notebook `api/api_extract.ipynb` that can be run in the Jupyter container to show the functionality once the API has been started.
+
+The docker-compose starts a container with the API running (`flask-api`) which can be accessed from another container at the address `http://flask-api:8001`.
+
+The API has the following commands
+  - `/get_station_ids`
+  - `/read_precip_data`
+  - `/read_general_data`
 
 ## Running Jupyter for Development
 - You can use Jupyter for development at `localhost:8080` with the token provided in the container logs
