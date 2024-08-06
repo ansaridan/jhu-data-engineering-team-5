@@ -40,7 +40,7 @@ git clone https://github.com/ansaridan/jhu-data-engineering-team-5.git
 cd jhu-data-engineering-team-5
 ```
 
-5.  Create the Docker image from the repo's specifications + start the containers
+4.  Create the Docker image from the repo's specifications + start the containers
 
 ```
 docker-compose up --build
@@ -52,6 +52,12 @@ After confirming that the containers are running (especially the Postgres contai
 python3 etl_process/etl.py
 ```
 This file should output logs along the way, but will take 5-10 minutes to run.
+
+6.  Start the Flask API
+A CLI in the Jupyter container (e.g. accessed through Docker Desktop), run the following command to start the Flask API discussed below.
+```
+python3 api/api.py
+```
 
 ---
 
@@ -66,9 +72,7 @@ After ensuring that the docker containers are running, and the ETL script has ru
 ## Running/Using the Flask API
 You can test the Flask API in a number of ways. From within the Jupyter container, it can be started in a CLI with `python3 api/api.py` and then tested at `http://localhost:8001`. There is also a notebook `api/api_extract.ipynb` that can be run in the Jupyter container to show the functionality once the API has been started.
 
-The docker-compose starts a container with the API running (`flask-api`) which can be accessed from another container at the address `http://flask-api:8001`.
-
-The API has the following commands
+The API has the following commands:
   - `/get_station_ids`
   - `/read_precip_data`
   - `/read_general_data`
@@ -86,7 +90,7 @@ The project requirements are:
 
 **[2] Create an entity-relationship diagram (ERD) of your schema in PDF format, including any
 keys or relationships**
-- The ERD diagram can be found in at `etl_process/erd`
+- The ERD diagram can be found in at `etl_process/ERD.pdf`
 
 **[3] Create an automation and an API to export or consume an aggregated view or interesting report of the data.**
 - See the above section `Running automated reporting in Airflow` and you can find the outputs in `reporting/reports`
