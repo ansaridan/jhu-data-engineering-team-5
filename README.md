@@ -76,9 +76,15 @@ The API has the following commands:
   - `/get_station_ids`
   - `/read_precip_data`
   - `/read_general_data`
+  - `/read_pressure_data`
+  - `/read_sky_data`
+  - `/read_wind_data`
+  - `/read_station_data`
 
 ## Running Jupyter for Development
-- You can use Jupyter for development at `localhost:8080` with the token provided in the container logs
+- You can use Jupyter for development at `localhost:8080` with the token provided in the container logs.  Click on the "airflow-jupyter-1" container, this will take you to the logs. Select a statement that looks like this: "http://127.0.0.1:8888/lab?token=e8e0df95307f9203b96e93c77ae8dd045263519715da925d" This will open your JupyterLab environment.
+- Once you have Jupyter notebook open, open the `api/api_extract.ipynb` notebook, in here, you can apply filters of your choice for each individual command.  There are example commands already filled in that you can use.
+- For dates, our data only ranges from July 1, 2023 to June 30, 2024, so if you want to apply a date filter, please stay within these bounds.
 
 ---
 
@@ -99,7 +105,7 @@ keys or relationships**
 code.**
 
 The following scripts can be run after the environment set up to generate our processed CSV files:
-- script 1
+- `etl_process/clean_weather_data.ipynb`. To run this script, load follow the "Running Jupyter for Development" instructions on how to launch your JupyterLab environment.  Once it is open, navigate to the above location and open the clean_weather_data.ipynb file. Run the Jupyter-Notebook in succession to properly clean the raw NYC weather data. To run the individual cells, there is an arrow icon towards the top of the notebook.  Click that for every cell you enter. Some portions may take a minute or two to complete.  Once the script is finished running, the cleaned data is saved off and can be viewed in `etl_process/processed_data/weather/`.  
 - script 2
 - script 2
 
