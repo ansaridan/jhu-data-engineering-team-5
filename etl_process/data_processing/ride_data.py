@@ -1,6 +1,5 @@
 ### File used to download 2023 (June - Decemeber) and 2024 (January - June) citibike monthly data ###
 ### Transforms columns to station id, month, hour, year, num_outbound, num_inbound and saves as iindividual csv by month ###
-### saves the station_id information for all stations (name, lat, long) as an additional csv ###
 
 import requests
 import zipfile
@@ -67,17 +66,26 @@ for file in total_file_list:
 # function to delete local files
 def delete_folder_contents(folder_path):
     if os.path.exists(folder_path):
-        # Loop over all the files and directories in the main folder
+        # Loop over all the files and directories in the folder
         for root, dirs, files in os.walk(folder_path, topdown=False):
             for name in files:
                 file_path = os.path.join(root, name)
-                os.remove(file_path)
+                try:
+                    os.remove(file_path)  # Delete file
+                except Exception as e:
+                    print(f'Error deleting file {file_path}: {e}')
             for name in dirs:
                 dir_path = os.path.join(root, name)
-                os.rmdir(dir_path)
-        # Delete main folder 
-        os.rmdir(folder_path)
-        print(f'Delete {folder_path}')
+                try:
+                    os.rmdir(dir_path)  # Delete directory
+                except Exception as e:
+                    print(f'Error deleting directory {dir_path}: {e}')
+        # Attempt to delete the main folder
+        try:
+            os.rmdir(folder_path)
+            print(f'Deleted {folder_path}')
+        except Exception as e:
+            print(f'Error deleting main folder {folder_path}: {e}')
     else:
         print(f'The directory {folder_path} does not exist.')
 
@@ -140,35 +148,6 @@ def cleaning_data(df):
 
     return(merged_df)
 
-# function to extract station information
-def station_extraction(df): 
-    # Extract unique start station information
-    start_stations = df[['start_station_id', 'start_station_name', 'start_lat', 'start_lng']].drop_duplicates()
-    start_stations = start_stations.rename(columns={
-        'start_station_id': 'station_id',
-        'start_station_name': 'station_name',
-        'start_lat': 'lat',
-        'start_lng': 'lng'
-    })
-    
-    # Extract unique end station information
-    end_stations = df[['end_station_id', 'end_station_name', 'end_lat', 'end_lng']].drop_duplicates()
-    end_stations = end_stations.rename(columns={
-        'end_station_id': 'station_id',
-        'end_station_name': 'station_name',
-        'end_lat': 'lat',
-        'end_lng': 'lng'
-    })
-    
-    # Combine start and end station information
-    all_stations = pd.concat([start_stations, end_stations]).drop_duplicates().reset_index(drop=True)
-    
-    return(all_stations)
-
-
-# empty list to store station info dataframes for each month
-station_info_1 = []
-
 # List all folder months we care about
 folders = [f"2023{month:02d}" for month in range(6, 13)]
 
@@ -209,36 +188,16 @@ for folder in folders:
     cleaned_df.to_csv(f'cleaned_historical_data/cleaned_data_historical_{count}.csv', index=False)
 
     # Print progress
-    print(f'Created {count}/14 csvs.')
+    print(f'Created {count}/12 csvs.')
 
     # increase count by 1
     count = count + 1
-
-    # add station information to list
-    station_info_1.append(station_extraction(combined_df))
 
     #Force deletion to avoid quit
     del combined_df
     del cleaned_df
     gc.collect()
 
-    
-
-# Combine DataFrames
-combined_station_1 = pd.concat(station_info_1)
-
-# Drop duplicate rows
-combined_station_1 = combined_station_1.drop_duplicates()
-
-# Write to csv
-combined_station_1.to_csv('cleaned_historical_data/station1.csv', index=False)
-
-# Print
-
-# Force deletion to avoid quit
-del combined_station_1
-del station_info_1
-gc.collect()
 
 # Delete local files for 2023 citibike monthly data
 
@@ -254,7 +213,7 @@ local_filenames = ['202401-citibike-tripdata.csv.zip',
                    '202402-citibike-tripdata.csv.zip',
                    '202403-citibike-tripdata.csv.zip',
                    '202404-citibike-tripdata.csv.zip',
-                   '202405-citibike-tripdata.zip', 
+                   '202405-citibike-tripdata.zip',
                    '202406-citibike-tripdata.zip']
                    
 for local_filename in local_filenames:
@@ -273,8 +232,6 @@ for local_filename in local_filenames:
     
     print(f'Downloaded and unzipped {local_filename[:-4]}')
 
-# empty list for 2024 station info
-station_info_2 = []
 
 # List all folders for 2024
 folders = [filename[:-4] for filename in local_filenames]
@@ -305,13 +262,10 @@ for folder in folders:
     # write to new cleaned_csv
     cleaned_df.to_csv(f'cleaned_historical_data/cleaned_data_historical_{count}.csv', index=False)
     # Print progress
-    print(f'Created {count}/14 csvs.')
+    print(f'Created {count}/12 csvs.')
 
     # increase count by 1
     count = count + 1
-
-    # add station information to list
-    station_info_2.append(station_extraction(combined_df))
 
     # Force deletion to avoid kernel quit
     del combined_df
@@ -324,19 +278,3 @@ for folder in folders:
 
 for file in local_filenames:
     os.remove(file)
-
-# combine 2023 and 2024 station info drop duplicates
-station_1 = pd.read_csv("station1.csv")
-station_2 = pd.concat(station_info_2)
-station_2 = station_2.drop_duplicates()
-
-station_combined = pd.concat([station_1, station_2]).drop_duplicates()
-station_combined = station_combined.drop_duplicates()
-
-station_combined.to_csv("cleaned_historical_data/station_cleaned.csv", index=False)
-
-# Print progress
-print(f'Created {count}/14 csvs.')
-
-# Delete station1.csv
-os.remove("station1.csv")           
