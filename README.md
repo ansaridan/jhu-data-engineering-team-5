@@ -47,7 +47,7 @@ docker-compose up --build
 ```
 
 5.  Build the database from within the docker container
-After confirming that the containers are running (especially the Postgres container), run the ETL script from a CLI in a container:
+After confirming that the containers are running (especially the Postgres container), run the ETL script from a CLI in the `jhu-data-enginerring-team-5_jupyter_1` container:
 ```
 python3 etl_process/etl.py
 ```
