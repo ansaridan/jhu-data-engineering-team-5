@@ -7,15 +7,6 @@ import psycopg2.extras
 
 app = Flask(__name__)
 
-# In order for the results of our different methods to be accessed throughout, we need to initalize them outside their respective functions
-# I am starting them out as dictionaries.
-filt_precip = {}
-filt_station = {}
-filt_general = {}
-filt_pressure = {}
-filt_sky = {}
-filt_wind = {}
-
 
 def get_db_connection_and_cursor():
     """Initializes a Postgres DB connection and cursor."""
