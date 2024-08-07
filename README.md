@@ -65,6 +65,7 @@ python3 api/api.py
 After ensuring that the docker containers are running, and the ETL script has run successfully, you can interact with our data environment as follows. We have configured our `docker-compose` to start each of the Jupyter Notebooks, Airflow Webserver+Scheduler and API apps, but it's worth checking that they are all up and running.
 
 ## Running automated reporting in Airflow
+- Check in your Docker Desktop that the Airflow webserver and scheduler containers are running as expected
 - You can access the Airflow webserver at `http://localhost:8080/home` with username/password = admin@example.com/admin
 - Inside Airflow, you can run the report by turning on the `run_report_dag`
 - The resulting interactive HTML reports will appear in `reporting/reports` and can be viewed in Chrome
